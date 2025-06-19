@@ -2,123 +2,162 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vyrax Token - El Poder del Dragón</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vyrax Token - El Token de la Comunidad</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
     body {
-      font-family: 'Orbitron', sans-serif;
-      background: url('https://i.ibb.co/rZqVHvF/dragon-cave-tech.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-    }
-    .overlay {
-      background: rgba(0, 0, 0, 0.85);
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1b1b1b, #2e2e2e);
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       min-height: 100vh;
-      padding: 40px 20px;
+      padding: 20px;
+      background-image: url('images/dragon.png');
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: contain;
+    }
+    header {
+      margin-bottom: 30px;
       text-align: center;
+      padding-top: 220px;
+      background: rgba(0,0,0,0.7);
+      width: 100%;
+      max-width: 900px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #ff4500;
     }
-    h1 {
-      font-size: 4rem;
-      color: #ff4d00;
-      text-shadow: 0 0 25px #ff0000;
-      margin-bottom: 20px;
+    header h1 {
+      font-size: 2.8rem;
+      margin: 0.2em 0;
+      color: #ff6f00;
+      text-shadow: 0 0 8px #ff6f00;
     }
-    .dragon-img {
-      width: 300px;
-      animation: flotar 4s ease-in-out infinite;
-      filter: drop-shadow(0 0 15px red);
+    header p {
+      font-size: 1.2rem;
+      margin-bottom: 1em;
     }
-    @keyframes flotar {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-      100% { transform: translateY(0); }
-    }
-    .btn {
-      display: inline-block;
-      margin: 10px 8px;
-      padding: 14px 26px;
-      background: linear-gradient(145deg, #ff6600, #cc0000);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 15px #ff2200;
-    }
-    .btn:hover {
-      transform: scale(1.05);
-    }
-    .content {
-      max-width: 950px;
-      margin: 40px auto;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px #ff2200;
-      text-align: left;
-    }
-    .content h2 {
-      color: #ff944d;
-      margin-bottom: 15px;
-    }
-    .content p {
+    main {
+      max-width: 900px;
+      background: rgba(10,10,10,0.85);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 0 15px #ff4500;
+      color: #ddd;
       font-size: 1.1rem;
-      margin-bottom: 15px;
-      line-height: 1.6;
+      line-height: 1.5;
     }
-    footer {
-      margin-top: 50px;
-      font-size: 0.9rem;
-      color: #ccc;
-    }
-    .socials a {
-      margin: 0 10px;
-      color: #ff944d;
+    main a {
+      color: #ff6f00;
       text-decoration: none;
       font-weight: bold;
     }
-    .socials a:hover {
+    main a:hover {
+      text-decoration: underline;
+    }
+    .btn-compra {
+      display: inline-block;
+      margin: 20px 0;
+      background: #ff6f00;
+      color: #1b1b1b;
+      padding: 15px 30px;
+      font-weight: bold;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 0 15px #ff6f00;
+      transition: background-color 0.3s ease;
+    }
+    .btn-compra:hover {
+      background: #ff8f00;
+      box-shadow: 0 0 25px #ff8f00;
+    }
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: #999;
+    }
+    .social-links {
+      margin-top: 20px;
+    }
+    .social-links a {
+      margin: 0 12px;
+      color: #ff6f00;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+    .social-links a:hover {
       text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <div class="overlay">
-    <img src="https://i.ibb.co/60dgb86/dragon-transparent.png" alt="Dragón Vyrax" class="dragon-img" />
-    <h1>Vyrax Token</h1>
 
-    <a class="btn" href="https://pancakeswap.finance/swap?outputCurrency=0x899F6eB2cF9ffa77fb0aF0F5dC4e13a6302F5c2C" target="_blank">Comprar Vyrax</a>
-    <a class="btn" href="https://bscscan.com/token/0x899F6eB2cF9ffa77fb0aF0F5dC4e13a6302F5c2C" target="_blank">Ver en BscScan</a>
+<header>
+  <h1>Vyrax Token ($VYR) – El Token de la Comunidad que Transforma el Futuro</h1>
+  <p>🔥 Compra Ahora $VYR en PancakeSwap</p>
+  <a href="https://pancakeswap.finance/swap?outputCurrency=0x899F6eB2cF9ffa77fb0aF0F5dC4e13a6302F5c2C" target="_blank" rel="noopener" class="btn-compra">➡️ Comprar Vyrax ($VYR) Aquí</a>
+</header>
 
-    <div class="content">
-      <h2>¿Qué es Vyrax?</h2>
-      <p><strong>Vyrax</strong> es un token creado para empoderar a la comunidad con visión descentralizada y transparente. El contrato ha sido renunciado por su creador, demostrando su total compromiso con los usuarios.</p>
+<main>
+  <p><strong>✅ ¿Qué es Vyrax?</strong><br>
+  Vyrax ($VYR) es un token diseñado para empoderar y apoyar a nuestra comunidad con total transparencia y compromiso. Este proyecto se basa en principios claros:</p>
 
-      <p>Con un suministro fijo de <strong>2 millones de tokens</strong>, Vyrax opera sin comisiones de compra o venta, permitiendo que cada usuario reciba el 100% de su inversión.</p>
+  <ul>
+    <li><strong>Propiedad renunciada:</strong> El contrato inteligente no tiene dueño, nadie controla el token excepto la comunidad.</li>
+    <li><strong>Comisiones 0%:</strong> Compra y vende sin pagar impuestos o comisiones ocultas.</li>
+    <li><strong>Suministro fijo:</strong> 2,000,000 tokens para garantizar estabilidad y confianza.</li>
+  </ul>
 
-      <p>Actualmente hay <strong>300,000 tokens en PancakeSwap</strong> a un precio accesible de <code>0.0004 USD</code> por token. Cada 15 días se liberarán nuevos tokens hasta llegar a 1.5 millones en circulación.</p>
+  <p><strong>📊 Precio y Liquidez Actual</strong><br>
+  Precio: $0.0004 por token<br>
+  Liquidez en PancakeSwap: 300,000 $VYR disponibles para compra inmediata<br>
+  Aprovecha el precio inicial bajo para posicionarte antes de que el proyecto crezca.</p>
 
-      <p>Los <strong>500,000 tokens restantes</strong> están reservados para marketing y desarrollo, siendo liberados de forma estratégica para no impactar el precio ni la estabilidad del mercado.</p>
+  <p><strong>⚙️ Distribución y Liberación Estratégica</strong><br>
+  1,500,000 $VYR se liberarán de forma progresiva cada 15 días, evitando saturar el mercado y manteniendo la estabilidad del precio.<br>
+  500,000 $VYR reservados para marketing y desarrollo, usados cuidadosamente para potenciar el proyecto sin afectar el mercado.</p>
 
-      <p style="color:#00ff88;font-weight:bold;">🔥 Este es el mejor momento para unirte al proyecto Vyrax y formar parte de la comunidad del dragón.</p>
-    </div>
+  <p><strong>🔍 Verificación del Contrato</strong><br>
+  Tu seguridad es prioridad. Puedes verificar el contrato oficial de Vyrax en BscScan:<br>
+  <a href="https://bscscan.com/address/0x899F6eB2cF9ffa77fb0aF0F5dC4e13a6302F5c2C" target="_blank" rel="noopener">Ver contrato Vyrax en BscScan</a></p>
 
-    <footer>
-      <div class="socials">
-        Telegram: <a href="https://t.me/vyraxcomunity" target="_blank">@vyraxcomunity</a> |
-        Canal: <a href="https://t.me/vyraxtoken" target="_blank">@vyraxtoken</a> |
-        X: <a href="https://x.com/vyraxcrypto" target="_blank">@vyraxcrypto</a> |
-        Instagram: <a href="https://instagram.com/vyrax_crypto" target="_blank">vyrax_crypto</a>
-      </div>
-      <div style="margin-top:10px;">© 2025 Vyrax Token - Forjado en la llama del dragón</div>
-    </footer>
+  <p><strong>🤝 Únete a Nuestra Comunidad</strong><br>
+  Sigue el crecimiento de Vyrax, participa en las decisiones y mantente informado en nuestros canales oficiales:</p>
+  
+  <div class="social-links">
+    <a href="https://t.me/vyraxcomunity" target="_blank" rel="noopener">Grupo Telegram</a> |
+    <a href="https://t.me/vyraxtoken" target="_blank" rel="noopener">Canal Telegram</a> |
+    <a href="https://twitter.com/vyraxcrypto" target="_blank" rel="noopener">Twitter</a> |
+    <a href="https://instagram.com/vyrax_crypto" target="_blank" rel="noopener">Instagram</a>
   </div>
+
+  <p><strong>🚀 ¿Por qué Vyrax?</strong><br>
+  Transparencia total: Propiedad renunciada, sin dueños ni comisiones.<br>
+  Sostenibilidad: Liberación gradual del suministro para evitar volatilidad.<br>
+  Comunidad fuerte: Tú formas parte activa del proyecto.<br>
+  Potencial real de crecimiento al estar en etapa inicial.</p>
+
+  <p><strong>💡 Cómo Comprar Vyrax</strong><br>
+  1. Abre PancakeSwap<br>
+  2. Conecta tu wallet compatible (MetaMask, Trust Wallet, etc.) configurada en Binance Smart Chain.<br>
+  3. Copia y pega la dirección del contrato:<br>
+  <code>0x899F6eB2cF9ffa77fb0aF0F5dC4e13a6302F5c2C</code><br>
+  4. Ingresa la cantidad que deseas comprar y confirma la transacción.</p>
+
+  <p><strong>⚠️ Advertencia</strong><br>
+  Recuerda siempre hacer tu propia investigación antes de invertir y comprar solo lo que puedas permitirte perder. Vyrax está comprometido con la transparencia y la comunidad, pero todo activo en cripto implica riesgos.</p>
+
+  <p><strong>📢 ¡Sé parte del cambio! Invierte en Vyrax hoy y únete a la comunidad que está transformando el futuro.</strong><br>
+  <a href="https://pancakeswap.finance/swap?outputCurrency=0x899F6eB2cF9ffa77fb0aF0F5dC4e13a6302F5c2C" target="_blank" rel="noopener" class="btn-compra">➡️ Comprar Vyrax ($VYR) Ahora</a></p>
+</main>
+
+<footer>
+  <p>© 2025 Vyrax Token - Todos los derechos reservados</p>
+</footer>
+
 </body>
 </html>
