@@ -159,4 +159,69 @@
 </footer>
 
 </body>
-</html>
+</html>           
+
+<!-- 🔥 Aquí va el botón y contador de minteo -->
+<div style="text-align: center; margin-top: 40px;">
+  <h2>🛠️ Mintea tu NFT ahora</h2>
+  <p>Disponibles: <span id="supply-count">Cargando...</span> / 80</p>
+  <button id="mintButton" style="padding: 14px 28px; font-size: 18px; background: #ff6f00; color: white; border: none; border-radius: 10px; cursor: pointer;">
+    🔥 Mintear NFT por 0.15 BNB
+  </button>
+  <p id="mint-status" style="margin-top: 15px; color: #ff9900;"></p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
+<script>
+  const nftAddress = "0x3010B4E5bA1BBCEA334f5ad0cb5153b434A0aC4E";
+  const abi = [
+    "function mint() public payable",
+    "function totalSupply() public view returns (uint256)"
+  ];
+  const mintPrice = "0.15";
+
+  async function updateSupply() {
+    try {
+      const provider = new ethers.providers.JsonRpcProvider("https://bsc-dataseed.binance.org/");
+      const contract = new ethers.Contract(nftAddress, abi, provider);
+      const total = await contract.totalSupply();
+      document.getElementById("supply-count").textContent = `${total.toString()}`;
+    } catch (err) {
+      document.getElementById("supply-count").textContent = "Error";
+    }
+  }
+
+  updateSupply(); // actualizar al cargar
+
+  document.getElementById("mintButton").addEventListener("click", async () => {
+    const status = document.getElementById("mint-status");
+
+    if (!window.ethereum) {
+      status.textContent = "🛑 Instala MetaMask u otra wallet compatible.";
+      return;
+    }
+
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      await provider.send("eth_requestAccounts", []);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(nftAddress, abi, signer);
+
+      const tx = await contract.mint({ value: ethers.utils.parseEther(mintPrice) });
+      status.textContent = "⏳ Transacción enviada. Esperando confirmación...";
+      await tx.wait();
+      status.textContent = "✅ ¡NFT minteado exitosamente!";
+      updateSupply();
+    } catch (error) {
+      console.error(error);
+      if (error.code === 4001) {
+        status.textContent = "❌ Transacción rechazada.";
+      } else if (error.message.includes("execution reverted")) {
+        status.textContent = "⚠️ Error del contrato: Verifica si aún hay NFTs disponibles.";
+      } else {
+        status.textContent = "⚠️ Ocurrió un error al mintear.";
+      }
+    }
+  });
+</script>
+ 
