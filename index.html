@@ -5,37 +5,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vyrax Token - El Token de la Comunidad</title>
   <style>
-    /* ... (todo tu CSS intacto) ... */
-
-    #wallet-connect {
-      background-color: #ff6f00;
-      color: #000;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #000;
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      background-image: url('images/dragon.png');
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: contain;
+    }
+    header {
+      margin-bottom: 30px;
+      text-align: center;
+      padding-top: 220px;
+      background: rgba(0,0,0,0.7);
+      width: 100%;
+      max-width: 900px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #ff4500;
+    }
+    header h1 {
+      font-size: 2.8rem;
+      margin: 0.2em 0;
+      color: #ff6f00;
+      text-shadow: 0 0 8px #ff6f00;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-bottom: 1em;
+    }
+    main {
+      max-width: 900px;
+      background: rgba(10,10,10,0.85);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 0 15px #ff4500;
+      color: #ddd;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+    main a {
+      color: #ff6f00;
+      text-decoration: none;
       font-weight: bold;
-      cursor: pointer;
+    }
+    main a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: #999;
+    }
+    .social-links {
       margin-top: 20px;
     }
-    #wallet-address {
-      margin-top: 10px;
-      font-size: 1rem;
-      color: #ff9900;
-    }
-    #mint-info {
-      margin-top: 20px;
+    .social-links a {
+      margin: 0 12px;
+      color: #ff6f00;
+      font-weight: bold;
+      text-decoration: none;
       font-size: 1.1rem;
     }
-    #mint-btn {
-      background-color: #ff6f00;
-      color: #000;
-      padding: 10px 18px;
-      border: none;
+    .social-links a:hover {
+      text-decoration: underline;
+    }
+    .contract-box {
+      background: #1a1a1a;
+      padding: 20px;
       border-radius: 10px;
-      font-size: 1rem;
-      cursor: pointer;
-      margin-top: 10px;
+      margin-top: 30px;
+      text-align: center;
+      box-shadow: 0 0 12px #ff6f00;
+    }
+    .contract-box code {
+      font-size: 1.2rem;
+      color: #ff9900;
     }
   </style>
 </head>
@@ -44,140 +95,68 @@
 <header>
   <h1>Vyrax Token ($VYR) – El Token de la Comunidad que Transforma el Futuro</h1>
   <p>🔥 Token + NFTs en BNB Chain | 100% Comunidad</p>
-  <button id="wallet-connect">🔗 Conectar Wallet</button>
-  <div id="wallet-address"></div>
 </header>
 
 <main>
-  <!-- ... todo tu contenido intacto ... -->
+  <p><strong>✅ ¿Qué es Vyrax?</strong><br>
+  Vyrax es un ecosistema de NFTs + Token ($VYR) construido en BNB Chain, creado para ofrecer oportunidades reales a la comunidad mediante participación, coleccionables únicos y un sistema de recompensas transparente.</p>
 
-  <div id="mint-info">
-    <p><strong>🧮 NFTs Minteados:</strong> <span id="minted">...</span> / 100</p>
-    <button id="mint-btn">🎨 Mint 1 NFT (0.15 BNB)</button>
-    <p id="status-msg"></p>
+  <ul>
+    <li><strong>Propiedad renunciada:</strong> El token $VYR es de la comunidad.</li>
+    <li><strong>Comisiones 0%:</strong> Sin impuestos en compra o venta.</li>
+    <li><strong>Suministro:</strong> 2,000,000 $VYR. 1,500,000 liberados progresivamente. 500,000 para desarrollo/marketing.</li>
+    <li><strong>Liquidez:</strong> 100,000 $VYR + 1 BNB serán agregados en PancakeSwap una vez minteados 50 NFTs.</li>
+  </ul>
+
+  <p><strong>🎨 NFTs Vyrax</strong><br>
+  - Solo 100 NFTs disponibles (80 para mintear, 20 para promociones y regalos)<br>
+  - Precio por NFT: 0.15 BNB<br>
+  - Los primeros 10 minteadores reciben <strong>99,000 $VYR</strong> repartidos entre ellos<br>
+  - Los primeros 3 también obtienen <strong>1 NFT extra gratis</strong></p>
+
+  <p><strong>🔧 Cómo mintear tu NFT desde BscScan</strong></p>
+  <ol>
+    <li>Abre <a href="https://bscscan.com/address/0x3010B4E5bA1BBCEA334f5ad0cb5153b434A0aC4E#writeContract" target="_blank">este enlace a BscScan</a>.</li>
+    <li>Conéctate con tu wallet (MetaMask).</li>
+    <li>Ve a la sección <strong>Write Contract</strong> y busca la función <code>mint()</code>.</li>
+    <li>Ingresa la cantidad (1) y haz clic en “Write”.</li>
+    <li>Confirma la transacción pagando 0.15 BNB.</li>
+  </ol>
+
+  <div class="contract-box">
+    <p><strong>🎯 Dirección del Contrato NFT:</strong></p>
+    <code>0x3010B4E5bA1BBCEA334f5ad0cb5153b434A0aC4E</code>
   </div>
 
-  <!-- ... el resto de tu contenido intacto ... -->
+  <p><strong>📈 ¿Cuándo se activa la liquidez del token?</strong><br>
+  Al alcanzar 50 NFTs vendidos, se activará el pool en PancakeSwap:<br>
+  - 1 BNB + 100,000 $VYR<br>
+  - <strong>Precio estimado inicial: $0.005 USDT por token</strong></p>
+
+  <p><strong>🔍 Verificación del Contrato del Token</strong><br>
+  Puedes revisar el contrato de $VYR en BscScan:<br>
+  <a href="https://bscscan.com/address/0x16633E428a18CCA1eaEA76d2aC437ad767335C35" target="_blank">Ver contrato $VYR</a></p>
+
+  <div class="contract-box">
+    <p><strong>🆔 Dirección del Token $VYR:</strong></p>
+    <code>0x16633E428a18CCA1eaEA76d2aC437ad767335C35</code>
+  </div>
+
+  <p><strong>🤝 Únete a Nuestra Comunidad</strong></p>
+  <div class="social-links">
+    <a href="https://t.me/vyraxcomunity" target="_blank">Grupo Telegram</a> |
+    <a href="https://t.me/vyraxtoken" target="_blank">Canal Telegram</a> |
+    <a href="https://twitter.com/vyraxcrypto" target="_blank">Twitter</a> |
+    <a href="https://instagram.com/vyrax_crypto" target="_blank">Instagram</a>
+  </div>
+
+  <p><strong>🚀 ¡Forma parte del movimiento Vyrax!</strong><br>
+  Un ecosistema justo, transparente y liderado por su comunidad. Participa, colecciona, intercambia y gana con Vyrax.</p>
 </main>
 
 <footer>
   <p>© 2025 Vyrax Token - Todos los derechos reservados</p>
 </footer>
-
-<!-- 🧠 Web3 & Web3Modal scripts -->
-<script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
-<script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
-<script src="https://unpkg.com/evm-chains/lib/index.min.js"></script>
-<script src="https://unpkg.com/web3modal"></script>
-
-<script>
-  const contractAddress = "0x3010B4E5bA1BBCEA334f5ad0cb5153b434A0aC4E";
-  const mintPriceBNB = "0.15";
-
-  let web3;
-  let account;
-  let contract;
-  let web3Modal;
-  let provider;
-
-  async function init() {
-    const providerOptions = {
-      walletconnect: {
-        package: window.WalletConnectProvider.default,
-        options: {
-          rpc: {
-            56: "https://bsc-dataseed1.binance.org/"
-          },
-        }
-      }
-    };
-
-    web3Modal = new window.Web3Modal.default({
-      cacheProvider: false,
-      providerOptions
-    });
-
-    document.getElementById('wallet-connect').addEventListener('click', connectWallet);
-    document.getElementById('mint-btn').addEventListener('click', mintNFT);
-
-    fetchMintedCount();
-  }
-
-  async function connectWallet() {
-    try {
-      provider = await web3Modal.connect();
-      web3 = new Web3(provider);
-
-      const chainId = await web3.eth.getChainId();
-      if (chainId !== 56) {
-        alert("¡Por favor cambia a BNB Chain!");
-        return;
-      }
-
-      const accounts = await web3.eth.getAccounts();
-      account = accounts[0];
-      document.getElementById('wallet-address').textContent = 🟢 Conectado: ${account.slice(0,6)}...${account.slice(-4)};
-
-      const abi = [
-        {
-          "constant": false,
-          "inputs": [],
-          "name": "mint",
-          "outputs": [],
-          "type": "function"
-        },
-        {
-          "constant": true,
-          "inputs": [],
-          "name": "totalSupply",
-          "outputs": [{"name":"","type":"uint256"}],
-          "type": "function"
-        }
-      ];
-
-      contract = new web3.eth.Contract(abi, contractAddress);
-
-      fetchMintedCount();
-
-    } catch (error) {
-      console.error("Conexión fallida:", error);
-    }
-  }
-
-  async function fetchMintedCount() {
-    try {
-      const rpcWeb3 = new Web3("https://bsc-dataseed1.binance.org/");
-      const abi = [{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"type":"function"}];
-      const readContract = new rpcWeb3.eth.Contract(abi, contractAddress);
-      const total = await readContract.methods.totalSupply().call();
-      document.getElementById("minted").textContent = total;
-    } catch (e) {
-      console.error("Error al obtener NFTs minteados", e);
-    }
-  }
-
-  async function mintNFT() {
-    if (!contract || !account) {
-      alert("Conecta tu wallet primero.");
-      return;
-    }
-
-    try {
-      document.getElementById("status-msg").textContent = "⏳ Minting NFT...";
-      await contract.methods.mint().send({
-        from: account,
-        value: web3.utils.toWei(mintPriceBNB, 'ether')
-      });
-      document.getElementById("status-msg").textContent = "✅ NFT minteado con éxito 🎉";
-      fetchMintedCount();
-    } catch (err) {
-      console.error(err);
-      document.getElementById("status-msg").textContent = "❌ Error al mintear el NFT.";
-    }
-  }
-
-  window.addEventListener('load', init);
-</script>
 
 </body>
 </html>
