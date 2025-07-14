@@ -166,8 +166,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vyrax NFT Mint</title>
-  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <title>Vyrax NFT Mint - WalletConnect</title>
   <style>
     body {
       background-color: #000;
@@ -197,86 +196,100 @@
       color: #ff9900;
     }
   </style>
-</head>
-<body>
+  <script type="module">
+    import { ethers } from 'https://cdn.jsdelivr.net/npm/ethers@6.8.1/dist/ethers.min.js';
+    import { createWeb3Modal, defaultConfig } from 'https://cdn.jsdelivr.net/npm/@web3modal/ethers@2.6.2/dist/index.js';
 
-  <h1>🔥 Mintea tu NFT de Vyrax</h1>
-  <p>NFTs disponibles: <span id="supply-count">Cargando...</span> / 80</p>
-
-  <button id="connectWallet">🔌 Conectar Wallet</button>
-  <button id="mintButton">🛠️ Mintear por 0.15 BNB</button>
-
-  <p id="mint-status"></p>
-
-  <script>
     const contractAddress = "0x3010B4E5bA1BBCEA334f5ad0cb5153b434A0aC4E";
     const contractABI = [
       "function mint() public payable",
       "function totalSupply() public view returns (uint256)"
     ];
+
     const mintPriceBNB = "0.15";
-    let signer, contract;
+
+    // Configuración Web3Modal para BNB Chain
+    const metadata = {
+      name: "Vyrax",
+      description: "Mint de NFTs Vyrax en BNB Chain",
+      url: "https://vyrax.io",
+      icons: ["https://vyrax.io/logo.png"]
+    };
+
+    const config = defaultConfig({
+      metadata,
+      chains: [
+        {
+          chainId: 56,
+          name: 'BNB Smart Chain',
+          currency: 'BNB',
+          explorerUrl: 'https://bscscan.com',
+          rpcUrl: 'https://bsc-dataseed.binance.org/'
+        }
+      ],
+      enableEIP6963: true,
+      enableInjected: true,
+      enableCoinbase: false,
+      enableWalletConnect: true
+    });
+
+    const modal = createWeb3Modal({ defaultChainId: 56, ethersConfig: config });
+
+    let walletProvider;
+    let nftContract;
 
     async function connectWallet() {
-      const status = document.getElementById("mint-status");
       try {
-        if (!window.ethereum) {
-          status.textContent = "🛑 Instala MetaMask o una wallet compatible.";
-          return;
-        }
-
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        await provider.send("eth_requestAccounts", []);
-        signer = provider.getSigner();
-        contract = new ethers.Contract(contractAddress, contractABI, signer);
-        status.textContent = "✅ Wallet conectada correctamente.";
+        walletProvider = await modal.connect();
+        const signer = new ethers.BrowserProvider(walletProvider).getSigner();
+        nftContract = new ethers.Contract(contractAddress, contractABI, await signer);
+        document.getElementById("mint-status").textContent = "✅ Wallet conectada correctamente.";
         updateSupply();
       } catch (err) {
         console.error(err);
-        status.textContent = "❌ Error al conectar la wallet.";
+        document.getElementById("mint-status").textContent = "❌ Error al conectar la wallet.";
       }
     }
 
     async function updateSupply() {
-      const countEl = document.getElementById("supply-count");
-      if (!contract) return;
       try {
-        const total = await contract.totalSupply();
-        countEl.textContent = total.toString();
+        const total = await nftContract.totalSupply();
+        document.getElementById("supply-count").textContent = total.toString();
       } catch (err) {
         console.error(err);
-        countEl.textContent = "Error";
+        document.getElementById("supply-count").textContent = "Error";
       }
     }
 
     async function mintNFT() {
       const status = document.getElementById("mint-status");
-      if (!signer || !contract) {
+      if (!nftContract) {
         status.textContent = "⚠️ Conecta tu wallet primero.";
         return;
       }
       try {
-        const tx = await contract.mint({ value: ethers.utils.parseEther(mintPriceBNB) });
+        const tx = await nftContract.mint({ value: ethers.parseEther(mintPriceBNB) });
         status.textContent = "⏳ Enviando transacción...";
         await tx.wait();
         status.textContent = "✅ ¡NFT minteado con éxito!";
         updateSupply();
       } catch (err) {
         console.error(err);
-        if (err.code === 4001) {
-          status.textContent = "❌ Transacción cancelada por el usuario.";
-        } else {
-          status.textContent = "⚠️ Error al mintear: " + (err.reason || err.message || "");
-        }
+        status.textContent = "⚠️ Error al mintear: " + (err?.message || "");
       }
     }
 
-    document.getElementById("connectWallet").addEventListener("click", connectWallet);
-    document.getElementById("mintButton").addEventListener("click", mintNFT);
+    window.connectWallet = connectWallet;
+    window.mintNFT = mintNFT;
   </script>
+</head>
+<body>
+  <h1>🔥 Mintea tu NFT de Vyrax</h1>
+  <p>NFTs disponibles: <span id="supply-count">Cargando...</span> / 80</p>
 
+  <button id="connectWallet" onclick="connectWallet()">🔌 Conectar Wallet</button>
+  <button id="mintButton" onclick="mintNFT()">🛠️ Mintear por 0.15 BNB</button>
+
+  <p id="mint-status"></p>
 </body>
 </html>
-
-
- 
